@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useRef } from "react";
 import { useForm } from "react-hook-form";
 import "./Section3.css";
 
@@ -7,14 +7,24 @@ import Banner from "../banner/Banner";
 import { ReactComponent as PrizeImg } from "../../assets/prize.svg";
 
 export default function Section3() {
+	const phoneMsg = useRef("");
+	const postnrMsg = useRef("");
+
 	const {
 		register,
 		formState: { errors },
 		handleSubmit,
 	} = useForm();
 	const validate = (data) => {
-		console.log(data);
-		if (data.name) {
+		// console.log(data);
+		if (
+			data.name === "" &&
+			data.email === "" &&
+			data.phone === "" &&
+			data.city === "" &&
+			data.postnr === ""
+		) {
+			return false;
 		}
 	};
 
@@ -34,14 +44,31 @@ export default function Section3() {
 		}
 	};
 
-	// const onlyNumbers = (e) => {
-	// 	// Only ASCII character in that range allowed
-	// 	var charCode = e.which ? e.which : e.keyCode;
-	// 	if (charCode !== 46 && charCode > 31 && (charCode < 48 || charCode > 57))
-	// 		return false;
+	const checkNumbers = (e) => {
+		let charCode = e.which ? e.which : e.keyCode;
 
-	// 	return true;
-	// };
+		if (charCode !== 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+			if (e.target.name === "phone") {
+				phoneMsg.current.textContent = "Kun nummer i dette felt";
+			} else {
+				postnrMsg.current.textContent = "Kun nummer i dette felt";
+			}
+	};
+	const onBlur = (e) => {
+		let currentVal = e.target.value;
+		if (
+			e.target.name === "phone" &&
+			(currentVal.length <= 2 || currentVal.length > 8)
+		) {
+			phoneMsg.current.textContent = "Mobilnummer skal være 8 cifre";
+		}
+		if (
+			e.target.name === "postnr" &&
+			(currentVal.length <= 2 || currentVal.length > 4)
+		) {
+			postnrMsg.current.textContent = "Postnummer skal være 4 cifre";
+		}
+	};
 	return (
 		<Banner id='section3' className='section3'>
 			<h2>Få 10 gode råd om transformation</h2>
@@ -80,11 +107,10 @@ export default function Section3() {
 									min: 10000000,
 									max: 99999999,
 								})}
-								// onKeyDown={(e) => {
-								// 	onlyNumbers(e);
-								// }}
+								onKeyDown={(e) => checkNumbers(e)}
+								onBlur={(e) => onBlur(e)}
 							></InputField>
-							<small className='input-msg'>
+							<small className='input-msg' ref={phoneMsg}>
 								{errors.phone?.type === "required" &&
 									"Mobilnummer kan ikke være tømt"}
 							</small>
@@ -99,10 +125,10 @@ export default function Section3() {
 									min: 15,
 									max: 9999,
 								})}
-								// onKeyDown={(e) => {
-								// 	onlyNumbers(e);
-								// }}
+								onKeyDown={(e) => checkNumbers(e)}
+								onBlur={(e) => onBlur(e)}
 							></InputField>
+							<small className='input-msg' ref={postnrMsg}></small>
 						</fieldset>
 						<fieldset className='right-sec'>
 							<InputField
@@ -129,9 +155,7 @@ export default function Section3() {
 									maxLength: 50,
 									minLength: 2,
 								})}
-								onKeyDown={(evt) => {
-									onlyTextAllow(evt);
-								}}
+								onKeyDown={(evt) => onlyTextAllow(evt)}
 							></InputField>
 						</fieldset>
 					</fieldset>

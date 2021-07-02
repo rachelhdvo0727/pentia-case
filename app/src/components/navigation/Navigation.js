@@ -12,10 +12,7 @@ function Navigation() {
 		setOpen(!open);
 		animateBars();
 	};
-	const closeMenu = () => {
-		setOpen(!open);
-		animateBars();
-	};
+
 	const animateBars = () => {
 		if (!open) {
 			//transform burgermenu icon
