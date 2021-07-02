@@ -18,9 +18,32 @@ export default function Section3() {
 		}
 	};
 
-	const { onChange } = register("");
+	const onlyTextAllow = (evt) => {
+		//https://stackoverflow.com/questions/29823591/html-input-do-not-allow-numbers
+		let key = evt.keyCode;
+		if (
+			!(
+				key === 8 ||
+				key === 32 ||
+				key === 46 ||
+				(key >= 35 && key <= 40) ||
+				(key >= 65 && key <= 90)
+			)
+		) {
+			evt.preventDefault();
+		}
+	};
+
+	// const onlyNumbers = (e) => {
+	// 	// Only ASCII character in that range allowed
+	// 	var charCode = e.which ? e.which : e.keyCode;
+	// 	if (charCode !== 46 && charCode > 31 && (charCode < 48 || charCode > 57))
+	// 		return false;
+
+	// 	return true;
+	// };
 	return (
-		<Banner className='section3'>
+		<Banner id='section3' className='section3'>
 			<h2>Få 10 gode råd om transformation</h2>
 			<h4>Ja tak, jeg vil gerne høre mere om digital transformation</h4>
 			<div className='contents'>
@@ -28,7 +51,6 @@ export default function Section3() {
 					<InputField
 						name='name'
 						type='text'
-						dataValidate='str'
 						placeholder='Navn'
 						label='Navn'
 						{...register("name", {
@@ -36,6 +58,9 @@ export default function Section3() {
 							maxLength: 50,
 							minLength: 2,
 						})}
+						onKeyDown={(evt) => {
+							onlyTextAllow(evt);
+						}}
 					></InputField>
 					<small className='input-msg'>
 						{errors.name?.type === "required" &&
@@ -46,16 +71,18 @@ export default function Section3() {
 							<InputField
 								name='phone_no'
 								type='tel'
-								dataValidate='int'
 								placeholder='Mobil'
 								label='Mobil'
-								dataMin='10000000'
-								dataMax='99999999'
 								{...register("phone", {
 									required: true,
 									maxLength: 8,
 									pattern: /[0-9]{2}(?!$)[0-9]{2}(?!$)[0-9]{2}(?!$)[0-9]{2}/,
+									min: 10000000,
+									max: 99999999,
 								})}
+								// onKeyDown={(e) => {
+								// 	onlyNumbers(e);
+								// }}
 							></InputField>
 							<small className='input-msg'>
 								{errors.phone?.type === "required" &&
@@ -64,22 +91,23 @@ export default function Section3() {
 							<InputField
 								name='post_no'
 								type='number'
-								dataValidate='int'
 								placeholder='Postnr.'
 								label='Postnr.'
-								dataMin='15'
-								dataMax='100'
 								{...register("postnr", {
 									required: true,
 									maxLength: 4,
+									min: 15,
+									max: 9999,
 								})}
+								// onKeyDown={(e) => {
+								// 	onlyNumbers(e);
+								// }}
 							></InputField>
 						</fieldset>
 						<fieldset className='right-sec'>
 							<InputField
 								name='email'
 								type='email'
-								dataValidate='email'
 								placeholder='E-mail'
 								label='E-mail'
 								{...register("email", {
@@ -94,7 +122,6 @@ export default function Section3() {
 							<InputField
 								name='city'
 								type='text'
-								dataValidate='str'
 								placeholder='By'
 								label='By'
 								{...register("city", {
@@ -102,6 +129,9 @@ export default function Section3() {
 									maxLength: 50,
 									minLength: 2,
 								})}
+								onKeyDown={(evt) => {
+									onlyTextAllow(evt);
+								}}
 							></InputField>
 						</fieldset>
 					</fieldset>

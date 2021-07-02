@@ -52,17 +52,17 @@ function Navigation() {
 				<div className={"menu-list" + (open && " slide-right")}>
 					<ul>
 						<li>
-							<a href='#section1' className='link' onClick={closeMenu}>
+							<a href='#section1' className='link' target='_self'>
 								Section 1
 							</a>
 						</li>
 						<li>
-							<a href='#section2' className='link' onClick={closeMenu}>
+							<a href='#section2' className='link' target='_self'>
 								Section 2
 							</a>
 						</li>
 						<li>
-							<a href='#section3' className='link' onClick={closeMenu}>
+							<a href='#section3' className='link' target='_self'>
 								Section 3
 							</a>
 						</li>

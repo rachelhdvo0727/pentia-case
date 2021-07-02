@@ -6,7 +6,7 @@ import { ReactComponent as DigitalImg } from "../../assets/zeppeliner.svg";
 
 export default function Section1() {
 	return (
-		<Banner className='section1'>
+		<Banner id='section1' className='section1'>
 			<div className='svg-container'>
 				<DigitalImg className='section-main-img'></DigitalImg>
 			</div>
