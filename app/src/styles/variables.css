@@ -1,0 +1,19 @@
+:root {
+	--primary-color: #eb5b51;
+	--secondary-color: #ffffff;
+	--tertiary-color: #2a2a2c;
+	--black-color: #1b1b1d;
+	--heading-1: GothamBlack, sans-serif;
+	--heading-2: GothamBook, sans-serif;
+	--heading-bold: GothamBold, sans-serif;
+	--p-text: GothamBook, sans-serif;
+
+	--font-size-base: 14px;
+	--font-size-placeholder: 12px;
+	--font-size-helper-line: 13.5px;
+
+	--max-s: 767.98px;
+	--max-m: 991.98px;
+	--max-ml: 1280px;
+	--max-l: 1440px;
+}

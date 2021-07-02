@@ -1,0 +1,81 @@
+.section3 {
+	background-color: var(--primary-color);
+	color: var(--secondary-color);
+}
+
+.section3 h2 {
+	margin-top: 3.5rem;
+}
+
+.section3 h4 {
+	margin: 2rem auto;
+}
+
+#form {
+	/* margin: 2rem 1rem; */
+
+	display: flex;
+	flex-flow: column wrap;
+}
+
+#form fieldset {
+	display: flex;
+	display: -webkit-flex;
+	flex-flow: column wrap;
+	justify-content: space-between;
+	-webkit-justify-content: space-between;
+}
+/* .left-sec,
+.right-sec {
+	margin: 0.5rem auto;
+} */
+.button {
+	width: max-content;
+	align-self: center;
+	padding: 1rem 3rem;
+}
+
+.prize-img {
+	fill: var(--secondary-color);
+	width: 23%;
+}
+
+.prize-img #Path_3,
+.prize-img #Path_1 {
+	fill: transparent;
+}
+.input-msg {
+	font-size: var(--font-size-helper-line);
+	text-align: left;
+	margin-bottom: 0.8rem;
+}
+
+#form .button {
+	margin: 2rem 0;
+}
+
+@media (min-width: 767.98px) {
+	.section3 h4 {
+		margin: 2rem 0 3rem 0;
+	}
+
+	#form {
+		margin: 0;
+	}
+
+	.prize-img {
+		max-width: 10%;
+	}
+}
+
+@media (min-width: 991.98px) {
+	#form > .details-field {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 3rem;
+	}
+
+	.section3 h4 {
+		/* margin: 0; */
+	}
+}

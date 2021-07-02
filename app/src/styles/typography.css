@@ -1,0 +1,55 @@
+* {
+	--fluid-size: var(--min-font-size) * 1px +
+		(var(--max-font-size) - var(--min-font-size)) *
+		((100vw - 420px) / (1200 - 420));
+}
+
+p,
+a,
+span,
+input,
+label {
+	font-family: var(--p-text);
+	--min-font-size: 14;
+	--max-font-size: 20;
+	font-size: clamp(
+		var(--min-font-size) * 1px,
+		var(--fluid-size),
+		var(--max-font-size) * 1px
+	);
+}
+
+h1 {
+	font-family: var(--heading-1);
+	--min-font-size: 30;
+	--max-font-size: 70;
+	font-size: clamp(
+		var(--min-font-size) * 1px,
+		var(--fluid-size),
+		var(--max-font-size) * 1px
+	);
+}
+
+h2 {
+	font-family: var(--heading-2);
+	line-height: 1.6;
+}
+h3,
+h4 {
+	line-height: 1.6;
+}
+p {
+	line-height: 1.5;
+}
+
+form {
+	line-height: 1.6;
+}
+.link {
+	font-size: var(--font-size-a);
+}
+
+.button {
+	font-size: var(--font-size-button);
+	font-family: var(--heading-bold);
+}

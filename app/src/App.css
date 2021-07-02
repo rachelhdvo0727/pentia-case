@@ -1,0 +1,30 @@
+.text {
+	color: var(--tertiary-color);
+}
+.app {
+	display: grid;
+	/* gap: 12vw; */
+	gap: calc(50px - 1px);
+	grid-template-areas: "sidebar main";
+}
+main {
+	grid-area: main;
+}
+nav {
+	grid-area: sidebar;
+}
+
+header {
+	background-color: var(--tertiary-color);
+	color: var(--secondary-color);
+	padding: 2rem 0 0 1.5rem;
+}
+.page-title {
+	font-family: var(--heading-bold);
+}
+
+@media (min-width: 767.98px) {
+	.app {
+		gap: 50px;
+	}
+}

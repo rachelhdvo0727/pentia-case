@@ -1,0 +1,31 @@
+@import url("./styles/reset.css");
+@import url("./styles/variables.css");
+@import url("./styles/font-face.css");
+@import url("./styles/typography.css");
+
+body {
+	margin: 0;
+	font-family: var(--p-text);
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	/* scrollbar Firefox */
+	scrollbar-width: auto !important;
+	scrollbar-color: var(--primary-color) rgb(92, 87, 87) !important;
+}
+
+code {
+	font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+		monospace;
+}
+
+/* Scrollbar Chrome */
+body::-webkit-scrollbar {
+	width: 10px; /* width of the entire scrollbar */
+}
+
+body::-webkit-scrollbar-thumb {
+	background-color: var(--primary-color);
+}
+.hidden {
+	display: none;
+}
