@@ -1,7 +1,9 @@
 import React from "react";
 import "./InputField.css";
+import { useFormContext } from "react-hook-form";
 
-function InputField(props, register) {
+const InputField = (props) => {
+	const { register } = useFormContext();
 	return (
 		<div className='input-container'>
 			<input
@@ -17,7 +19,8 @@ function InputField(props, register) {
 				onFocus={props.onFocus}
 				onBlur={props.onBlur}
 				onKeyDown={props.onKeyDown}
-				register={register}
+				{...register}
+				// ref={register}
 			></input>
 			<label
 				htmlFor={props.htmlFor}
@@ -27,6 +30,6 @@ function InputField(props, register) {
 			</label>
 		</div>
 	);
-}
+};
 
 export default InputField;

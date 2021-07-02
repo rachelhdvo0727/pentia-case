@@ -1,22 +1,29 @@
 import React, { useRef } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, FormProvider } from "react-hook-form";
 import "./Section3.css";
 
 import InputField from "../input-field/InputField";
 import Banner from "../banner/Banner";
 import { ReactComponent as PrizeImg } from "../../assets/prize.svg";
 
-export default function Section3() {
+const Section3 = () => {
 	const phoneMsg = useRef("");
 	const postnrMsg = useRef("");
 
+	// const {
+	// 	register,
+
+	// 	handleSubmit,
+	// } = useForm();
+
+	const methods = useForm();
 	const {
 		register,
 		formState: { errors },
-		handleSubmit,
-	} = useForm();
-	const validate = (data) => {
-		// console.log(data);
+	} = methods;
+
+	const onSubmit = (data) => {
+		console.log(data);
 		if (
 			data.name === "" &&
 			data.email === "" &&
@@ -62,6 +69,7 @@ export default function Section3() {
 		) {
 			phoneMsg.current.textContent = "Mobilnummer skal være 8 cifre";
 		}
+
 		if (
 			e.target.name === "postnr" &&
 			(currentVal.length <= 2 || currentVal.length > 4)
@@ -69,101 +77,104 @@ export default function Section3() {
 			postnrMsg.current.textContent = "Postnummer skal være 4 cifre";
 		}
 	};
+
 	return (
 		<Banner id='section3' className='section3'>
 			<h2>Få 10 gode råd om transformation</h2>
 			<h4>Ja tak, jeg vil gerne høre mere om digital transformation</h4>
 			<div className='contents'>
-				<form id='form' onSubmit={handleSubmit(validate)}>
-					<InputField
-						name='name'
-						type='text'
-						placeholder='Navn'
-						label='Navn'
-						{...register("name", {
-							required: true,
-							maxLength: 50,
-							minLength: 2,
-						})}
-						onKeyDown={(evt) => {
-							onlyTextAllow(evt);
-						}}
-					></InputField>
-					<small className='input-msg'>
-						{errors.name?.type === "required" &&
-							"Navnfeltet kan ikke være tømt"}
-					</small>
-					<fieldset className='details-field'>
-						<fieldset className='left-sec'>
-							<InputField
-								name='phone_no'
-								type='tel'
-								placeholder='Mobil'
-								label='Mobil'
-								{...register("phone", {
-									required: true,
-									maxLength: 8,
-									pattern: /[0-9]{2}(?!$)[0-9]{2}(?!$)[0-9]{2}(?!$)[0-9]{2}/,
-									min: 10000000,
-									max: 99999999,
-								})}
-								onKeyDown={(e) => checkNumbers(e)}
-								onBlur={(e) => onBlur(e)}
-							></InputField>
-							<small className='input-msg' ref={phoneMsg}>
-								{errors.phone?.type === "required" &&
-									"Mobilnummer kan ikke være tømt"}
-							</small>
-							<InputField
-								name='post_no'
-								type='number'
-								placeholder='Postnr.'
-								label='Postnr.'
-								{...register("postnr", {
-									required: true,
-									maxLength: 4,
-									min: 15,
-									max: 9999,
-								})}
-								onKeyDown={(e) => checkNumbers(e)}
-								onBlur={(e) => onBlur(e)}
-							></InputField>
-							<small className='input-msg' ref={postnrMsg}></small>
+				<FormProvider {...methods}>
+					<form id='form' onSubmit={methods.handleSubmit(onSubmit)}>
+						<InputField
+							name='name'
+							type='text'
+							placeholder='Navn'
+							label='Navn'
+							{...register("name", {
+								required: true,
+								maxLength: 50,
+								minLength: 2,
+							})}
+							onKeyDown={(evt) => {
+								onlyTextAllow(evt);
+							}}
+						></InputField>
+						<small className='input-msg'>
+							{errors.name?.type === "required" &&
+								"Navnfeltet kan ikke være tømt"}
+						</small>
+						<fieldset className='details-field'>
+							<fieldset className='left-sec'>
+								<InputField
+									name='phone'
+									type='tel'
+									placeholder='Mobil'
+									label='Mobil'
+									{...register("phone", {
+										required: true,
+										maxLength: 8,
+										pattern: /[0-9]{2}(?!$)[0-9]{2}(?!$)[0-9]{2}(?!$)[0-9]{2}/,
+										min: 10000000,
+										max: 99999999,
+									})}
+									onKeyDown={(e) => checkNumbers(e)}
+									onBlur={(e) => onBlur(e)}
+								></InputField>
+								<small className='input-msg' ref={phoneMsg}>
+									{errors.phone?.type === "required" &&
+										"Mobilnummer kan ikke være tømt"}
+								</small>
+								<InputField
+									name='post_no'
+									type='number'
+									placeholder='Postnr.'
+									label='Postnr.'
+									{...register("postnr", {
+										required: true,
+										maxLength: 4,
+										min: 15,
+										max: 9999,
+									})}
+									onKeyDown={(e) => checkNumbers(e)}
+									onBlur={(e) => onBlur(e)}
+								></InputField>
+								<small className='input-msg' ref={postnrMsg}></small>
+							</fieldset>
+							<fieldset className='right-sec'>
+								<InputField
+									name='email'
+									type='email'
+									placeholder='E-mail'
+									label='E-mail'
+									{...register("email", {
+										pattern:
+											/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+									})}
+								></InputField>
+								<small className='input-msg'>
+									{errors.email?.type === "required" &&
+										"Emailfeltet kan ikke være tømt"}
+								</small>
+								<InputField
+									name='city'
+									type='text'
+									placeholder='By'
+									label='By'
+									{...register("city", {
+										required: false,
+										maxLength: 50,
+										minLength: 2,
+									})}
+									onKeyDown={(evt) => onlyTextAllow(evt)}
+								></InputField>
+							</fieldset>
 						</fieldset>
-						<fieldset className='right-sec'>
-							<InputField
-								name='email'
-								type='email'
-								placeholder='E-mail'
-								label='E-mail'
-								{...register("email", {
-									pattern:
-										/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
-								})}
-							></InputField>
-							<small className='input-msg'>
-								{errors.email?.type === "required" &&
-									"Emailfeltet kan ikke være tømt"}
-							</small>
-							<InputField
-								name='city'
-								type='text'
-								placeholder='By'
-								label='By'
-								{...register("city", {
-									required: false,
-									maxLength: 50,
-									minLength: 2,
-								})}
-								onKeyDown={(evt) => onlyTextAllow(evt)}
-							></InputField>
-						</fieldset>
-					</fieldset>
 
-					<button type='submit' className='button'>
-						Ring mig op
-					</button>
-				</form>
+						<button type='submit' className='button'>
+							Ring mig op
+						</button>
+					</form>
+				</FormProvider>
 			</div>
 			<div className='award'>
 				<div className='svg-container'>
@@ -173,8 +184,8 @@ export default function Section3() {
 			</div>
 		</Banner>
 	);
-}
-
+};
+export default Section3;
 // const [fields, setFields] = useState({
 // 	name: "",
 // 	phone: "",
