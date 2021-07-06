@@ -7,6 +7,7 @@ function Navigation() {
 	const bar1 = useRef(null);
 	const bar2 = useRef(null);
 	const bar3 = useRef(null);
+	
 	const [open, setOpen] = useState(false);
 	const toggleOpenMenu = () => {
 		setOpen(!open);
