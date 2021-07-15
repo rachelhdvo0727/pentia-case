@@ -6,7 +6,7 @@ import { ReactComponent as DigitalImg } from "../../assets/zeppeliner.svg";
 
 export default function Section1() {
 	return (
-		<Banner id='section1' className='section1'>
+		<Banner className='section1'>
 			<div className='svg-container'>
 				<DigitalImg className='section-main-img'></DigitalImg>
 			</div>
@@ -23,7 +23,8 @@ export default function Section1() {
 			</div>
 
 			<div className='start-journey'>
-				<a href='#' className='start-journey'>
+				{/* eslint-disable-next-line jsx-a11y/anchor-is-valid */}
+				<a href='#' target='_self' className='start-journey'>
 					Start din rejse her
 				</a>
 				<br />

@@ -46,10 +46,6 @@ form {
 	line-height: 1.6;
 }
 
-.link {
-	font-size: var(--font-size-a);
-}
-
 .button {
 	font-size: var(--font-size-button);
 	font-family: var(--heading-bold);

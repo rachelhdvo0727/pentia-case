@@ -7,7 +7,7 @@ import { ReactComponent as DigTransImg } from "../../assets/illustration2.svg";
 
 export default function Section2(props) {
 	return (
-		<Banner id='section2' className='section2'>
+		<Banner  className='section2'>
 			{/* Headings */}
 			<h2>Vi kan hjælpe dig med digital transformation på to fronter</h2>
 			{/* Contents */}

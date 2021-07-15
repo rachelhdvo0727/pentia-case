@@ -79,7 +79,7 @@ const Section3 = () => {
 	};
 
 	return (
-		<Banner id='section3' className='section3'>
+		<Banner className='section3'>
 			<h2>Få 10 gode råd om transformation</h2>
 			<h4>Ja tak, jeg vil gerne høre mere om digital transformation</h4>
 			<div className='contents'>
@@ -148,12 +148,12 @@ const Section3 = () => {
 									label='E-mail'
 									{...register("email", {
 										pattern:
-											/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+											/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
 									})}
 								></InputField>
 								<small className='input-msg'>
-									{errors.email?.type === "required" &&
-										"Emailfeltet kan ikke være tømt"}
+									{/* {errors.email?.type === "required" &&
+										"Emailfeltet kan ikke være tømt"} */}
 								</small>
 								<InputField
 									name='city'
@@ -167,6 +167,7 @@ const Section3 = () => {
 									})}
 									onKeyDown={(evt) => onlyTextAllow(evt)}
 								></InputField>
+								<small className='input-msg'></small>
 							</fieldset>
 						</fieldset>
 

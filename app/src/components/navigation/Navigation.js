@@ -2,12 +2,13 @@ import React, { useState, useRef } from "react";
 import "./Navigation.css";
 
 import { ReactComponent as Logo } from "../../assets/logo.svg";
+import { Link } from "react-scroll";
 
 function Navigation() {
 	const bar1 = useRef(null);
 	const bar2 = useRef(null);
 	const bar3 = useRef(null);
-	
+
 	const [open, setOpen] = useState(false);
 	const toggleOpenMenu = () => {
 		setOpen(!open);
@@ -50,19 +51,26 @@ function Navigation() {
 				<div className={"menu-list" + (open && " slide-right")}>
 					<ul>
 						<li>
-							<a href='#section1' className='link' target='_self'>
+							<Link
+								activeClass='active'
+								to='section1'
+								spy={true}
+								smooth={true}
+								duration={250}
+							>
 								Section 1
-							</a>
+							</Link>
 						</li>
 						<li>
-							<a href='#section2' className='link' target='_self'>
+							<Link to='section2' spy={true} smooth={true} duration={250}>
 								Section 2
-							</a>
+							</Link>
 						</li>
 						<li>
-							<a href='#section3' className='link' target='_self'>
+							<Link to='sectionTest' spy={true} smooth={true} duration={250}>
 								Section 3
-							</a>
+							</Link>
+							<a href='#section3'>Test section3</a>
 						</li>
 					</ul>
 				</div>
